@@ -62,8 +62,7 @@ qurantab-landing-page/
 
 ## 🖼️ Preview
 
-![./images/screen-1.png](.)
-*(Replace with an actual screenshot of your project)*
+![Preview](./images/screen-1.png)
 
 ---
 
@@ -84,3 +83,4 @@ You’re free to use, modify, and distribute it with attribution.
 ✨ This is a **ready-to-use README.md** file — you can copy it as-is.  
 
 Do you want me to also **customize it with your actual GitHub repo link and a real live demo link** so it’s 100% plug-and-play?
+
