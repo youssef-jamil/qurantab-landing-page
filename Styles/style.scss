@@ -60,12 +60,18 @@ a {
 
 /* End CSS Reset */
 
+/* Start Global Css*/
+
 .container {
   display: flex;
   flex-direction: column;
   max-width: var(--desktop-width);
   margin: 0 auto;
   padding: 0 var(--default-padding);
+
+  @media (max-width: var(--tablet-width)) {
+    gap: calc(var(--default-padding) / 2);
+  }
 }
 
 .section {
@@ -74,6 +80,12 @@ a {
   background-color: var(--color-off-white);
   border-radius: var(--default-radius);
   box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
+
+  /*   @media (max-width: 600px) {
+    background-color: none;
+    box-shadow: none;
+    border: none;
+  } */
 }
 
 .button {
@@ -89,14 +101,29 @@ a {
     background-color: var(--color-off-white);
     color: var(--color-very-dark-blue);
   }
+
+  &--disabled {
+    background-color: var(--color-grayish-blue);
+    box-shadow: none;
+    cursor: not-allowed;
+    user-select: none;
+  }
 }
 
-/*Header Styles*/
+/* End Global Css */
+
+/* Header Styles */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: var(--default-padding);
+  position: sticky;
+
+  @media (max-width: 600px) {
+    font-size: 1.4rem;
+    gap: calc(var(--default-padding) / 2);
+  }
 }
 
 .logo {
@@ -114,6 +141,10 @@ a {
   display: flex;
   align-items: center;
   gap: var(--default-padding);
+
+  @media (max-width: 600px) {
+    gap: calc(var(--default-padding) / 2);
+  }
 }
 
 .link {
@@ -142,6 +173,16 @@ a {
 
   gap: calc(var(--default-padding) * 2);
 
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: var(--default-padding);
+  }
+
+  &--one-column {
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+  }
+
   &-content {
     display: flex;
     flex-direction: column;
@@ -156,6 +197,11 @@ a {
   &-description {
     color: var(--color-grayish-blue);
     font-size: 1.4rem;
+
+    .section--one-column & {
+      text-align: center;
+      max-width: 50rem;
+    }
   }
 
   &-image {
@@ -166,10 +212,180 @@ a {
     display: flex;
     gap: var(--default-padding);
     margin-top: var(--default-padding);
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      flex: 1;
+    }
   }
 
   &-image-content {
     display: flex;
     flex: 1;
+
+    @media (max-width: 600px) {
+      order: -1;
+    }
+  }
+}
+
+/* End Section Styles */
+
+/* Download Section Styles */
+
+.cards {
+  display: flex;
+  gap: var(--default-padding);
+  width: 100%;
+  margin-top: calc(var(--default-padding) / 2);
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    gap: calc(var(--default-padding) / 2);
+    justify-content: center;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--color-off-white);
+  border-radius: var(--default-radius);
+  box-shadow: 0 0.4rem 0.8rem 0.2rem rgba(0, 0, 0, 0.2);
+  width: 25rem;
+  height: 26rem;
+  padding: calc(var(--default-padding) * 2) var(--default-padding)
+    var(--default-padding);
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+  &-img {
+    width: 6rem;
+    max-width: 100%;
+    margin-bottom: calc(var(--default-padding) / 2);
+  }
+
+  &-title {
+    font-size: 1.8rem;
+    margin: calc(var(--default-padding) / 2) 0;
+  }
+
+  &-link {
+    position: relative;
+    align-self: stretch;
+    text-align: center;
+    margin-top: auto;
+
+    &::before {
+      content: "";
+      position: absolute;
+      background: url(../images/bg-dots.svg) repeat-x;
+      background-size: contain;
+      height: 0.3rem;
+      top: calc(var(--default-padding) * -1.4);
+      left: calc(var(--default-padding) * -1);
+      right: calc(var(--default-padding) * -1);
+    }
+  }
+}
+
+/* End Download Section Styles */
+/* FAQ Section Styles */
+.faq {
+  max-width: 50rem;
+  margin-top: calc(var(--default-padding) * 1.5);
+  border-top: 1px solid var(--color-grayish-blue);
+  border-bottom: 1px solid var(--color-grayish-blue);
+
+  &--row {
+    position: relative;
+    padding: var(--default-padding) 0;
+    padding-right: var(--default-padding);
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid var(--color-grayish-blue);
+    }
+  }
+
+  &--icon {
+    width: 1.2rem;
+    max-width: 100%;
+    transition: transform var(--timing-animation) ease-in-out;
+    position: absolute;
+    right: 0;
+    top: calc(var(--default-padding) + 0.6rem);
+  }
+
+  &--input {
+    display: none;
+
+    &:checked ~ .faq--answer {
+      max-height: 30rem;
+      padding-top: var(--default-padding);
+      opacity: 1;
+    }
+
+    &:checked ~ .faq--icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &--label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding-right: 1rem;
+  }
+
+  &--answer {
+    font-weight: 400;
+    font-size: 1.4rem;
+    overflow: hidden;
+    max-height: 0.1rem;
+    color: var(--color-grayish-blue);
+    transition: all var(--timing-animation);
+    opacity: 0;
+  }
+}
+
+/* End FAQ Section Styles */
+/* Footer Styles */
+.footer {
+  position: relative;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: var(--default-padding) 0;
+  font-size: 1.4rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: calc(var(--default-padding) / 2);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background-color: var(--color-very-dark-blue);
+    z-index: -1;
+  }
+
+  &__left {
+    display: flex;
+    gap: var(--default-padding);
+    margin-right: auto;
+
+    @media (max-width: 600px) {
+      margin-right: 0;
+    }
   }
 }
