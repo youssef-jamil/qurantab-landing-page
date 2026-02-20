@@ -115,7 +115,6 @@ a {
   justify-content: space-between;
   align-items: center;
   margin-top: var(--default-padding);
-  position: sticky;
 }
 @media (max-width: 600px) {
   .header {
