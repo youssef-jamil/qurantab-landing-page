@@ -8,7 +8,7 @@ export const clickLabelHandler = (item) => {
 
 export const observeElement = (sectionElement) => {
   const options = {
-    threshold: 0.25
+    threshold: 0.35
   };
 
   const callBack = (entries) => {
